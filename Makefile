@@ -36,8 +36,8 @@ DATA		:=	data
 INCLUDES	:=	include
 EXEFS_SRC	:=	exefs_src
 
-APP_TITLE   := Hamsters NX
-APP_AUTHOR  := Cid2mizard
+APP_TITLE   := Mice Breeder
+APP_AUTHOR  := ELY M.
 APP_VERSION := 1.0
 ICON 		:= icon.jpg
 
