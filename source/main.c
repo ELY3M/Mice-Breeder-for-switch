@@ -47,11 +47,7 @@ int buy_cages_males;
 int buy_cages_females;
 int selection;
 
-u64 LanguageCode;
-s32 Language;
-Result langue;
 
-//u8 langue = 2;
 
 void clean()
 {
@@ -453,41 +449,14 @@ void readInput()
 	}
 }
 
-/*
-int main(int argc, char **argv)
-{
-    //Initialize console. Using NULL as the second argument tells the console library to use the internal console structure as current one.
-    consoleInit(NULL);
-
-    while(appletMainLoop())
-    {
-        //Scan all the inputs. This should be done once for each frame
-        hidScanInput();
-
-        //hidKeysDown returns information about which buttons have been just pressed (and they weren't in the previous frame)
-        u64 kDown = hidKeysDown(CONTROLLER_P1_AUTO);
-
-        if (kDown & KEY_PLUS) break; // break in order to return to hbmenu
-
-        consoleUpdate(NULL);
-    }
-
-    consoleExit(NULL);
-    return 0;
-}
-*/
-
 
 int main(int argc, char **argv)
 {
 	
 	
-	//gfxInitDefault();
 	consoleInit(NULL);
 
 	setInitialize();
-	//setGetSystemLanguage(&LanguageCode);
-	//langue = setMakeLanguage(LanguageCode, &Language);
 
 
 	mode_intro = true;
