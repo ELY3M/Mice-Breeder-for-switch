@@ -25,4 +25,5 @@ Use libnx from switchbrew
 
 Thanks/Credit to:  
 https://github.com/switchbrew for Switch dev stuff
+Hamster NX (https://github.com/Cid2mizard/Hamsters_NX/)
 

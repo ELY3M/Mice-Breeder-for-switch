@@ -76,7 +76,7 @@ void printGame()
 {
 	if (mode_intro)
 	{
-		printf("\x1b[2;30H\x1b[31m***** Mice Breeder *****\x1b[0m");
+		printf("\x1b[2;%dH\x1b[31m***** Mice Breeder *****\x1b[0m", CONSOLE_CYAN);
 
         printf("\x1b[4;1HThe purpose of the game is to manage breeding");
 			printf("\x1b[5;1Hmice 12 months by making profits.");
