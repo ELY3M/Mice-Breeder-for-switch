@@ -17,11 +17,12 @@ A : Next step
 
 Plus : Exit
 
-
 Changelog:   
 removed french stuff and made variables into english made code easily readable and understandable.  
 v1.0 Initial Release  
 Use libnx from switchbrew   
+
+![Screenshot](screenshot.jpg) 
 
 Thanks/Credit to:  
 https://github.com/switchbrew for Switch dev stuff
