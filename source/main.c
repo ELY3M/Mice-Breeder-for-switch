@@ -14,8 +14,6 @@ I used Hamster NX (https://github.com/Cid2mizard/Hamsters_NX/) as a base. Thanks
 
 */
 
-//u32 kDown;	
-PadState pad;
 	
 bool mode_intro;
 bool error;
@@ -186,12 +184,8 @@ void newGame()
 	DEAD_HUNGRY = 0;
 }
 
-void readInput()
+void readInput(u64 kDown)
 {
-	
-	//needed?
-	padUpdate(&pad);
-    u64 kDown = padGetButtonsDown(&pad);
 		
 	if ((kDown & HidNpadButton_A) && (mode_intro == true))
 	{
@@ -464,6 +458,7 @@ int main(int argc, char **argv)
 	setInitialize();
 	
 	padConfigureInput(1, HidNpadStyleSet_NpadStandard);
+	PadState pad;
 	padInitializeDefault(&pad);
 
 	mode_intro = true;
@@ -484,7 +479,7 @@ int main(int argc, char **argv)
         padUpdate(&pad);
         u64 kDown = padGetButtonsDown(&pad);
 				
-		readInput();
+		readInput(kDown);
 		if (kDown & HidNpadButton_Plus) { 
 		break; 
 		} // break in order to return to hbmenu
