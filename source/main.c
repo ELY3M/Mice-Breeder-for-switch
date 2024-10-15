@@ -14,8 +14,9 @@ I used Hamster NX (https://github.com/Cid2mizard/Hamsters_NX/) as a base. Thanks
 
 */
 
-u32 kDown;
-
+//u32 kDown;	
+PadState pad;
+	
 bool mode_intro;
 bool error;
 int mode_game;
@@ -76,7 +77,7 @@ void printGame()
 {
 	if (mode_intro)
 	{
-		printf("\x1b[2;%dH\x1b[31m***** Mice Breeder *****\x1b[0m", CONSOLE_CYAN);
+		printf ("\x1b[2;30H%s%s%s", CONSOLE_CYAN, "***** Mice Breeder *****", CONSOLE_RESET);
 
         printf("\x1b[4;1HThe purpose of the game is to manage breeding");
 			printf("\x1b[5;1Hmice 12 months by making profits.");
@@ -187,6 +188,11 @@ void newGame()
 
 void readInput()
 {
+	
+	//needed?
+	padUpdate(&pad);
+    u64 kDown = padGetButtonsDown(&pad);
+		
 	if ((kDown & HidNpadButton_A) && (mode_intro == true))
 	{
 		mode_intro = false;
@@ -458,7 +464,6 @@ int main(int argc, char **argv)
 	setInitialize();
 	
 	padConfigureInput(1, HidNpadStyleSet_NpadStandard);
-	PadState pad;
 	padInitializeDefault(&pad);
 
 	mode_intro = true;
