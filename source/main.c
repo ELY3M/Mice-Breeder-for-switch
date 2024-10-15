@@ -187,18 +187,18 @@ void newGame()
 
 void readInput()
 {
-	if ((kDown & KEY_A) && (mode_intro == true))
+	if ((kDown & HidNpadButton_A) && (mode_intro == true))
 	{
 		mode_intro = false;
 		mode_game = 1;
 	}
-	else if ((kDown & KEY_A) && (mode_game == 1))
+	else if ((kDown & HidNpadButton_A) && (mode_game == 1))
 	{
 		//start of month
 		selection = 0;
 		mode_game = 2;
 	}
-	else if ((kDown & KEY_A) && (mode_game == 2))
+	else if ((kDown & HidNpadButton_A) && (mode_game == 2))
 	{
 		if (males_to_sell <= MALES.ADULTS)
 		{
@@ -214,7 +214,7 @@ void readInput()
 			error = true;
 		}
 	}
-	else if ((kDown & KEY_A) && (mode_game == 3))
+	else if ((kDown & HidNpadButton_A) && (mode_game == 3))
 	{
 		if (females_to_sell <= FEMALES.ADULTS)
 		{
@@ -230,7 +230,7 @@ void readInput()
 			error = true;
 		}
 	}
-	else if ((kDown & KEY_A) && (mode_game == 4))
+	else if ((kDown & HidNpadButton_A) && (mode_game == 4))
 	{
 		if ((number_coupling <= MALES.ADULTS) && (number_coupling <= FEMALES.ADULTS))
 		{
@@ -244,7 +244,7 @@ void readInput()
 			error = true;
 		}
 	}
-	else if ((kDown & KEY_A) && (mode_game == 5))
+	else if ((kDown & HidNpadButton_A) && (mode_game == 5))
 	{
 		if (food_to_buy*0.10 <= CHECKOUT)
 		{
@@ -260,7 +260,7 @@ void readInput()
 			error = true;
 		}
 	}
-	else if ((kDown & KEY_A) && (mode_game == 6))
+	else if ((kDown & HidNpadButton_A) && (mode_game == 6))
 	{
 		if (buy_cages_males*5 <= CHECKOUT)
 		{
@@ -276,7 +276,7 @@ void readInput()
 			error = true;
 		}
 	}
-	else if ((kDown & KEY_A) && (mode_game == 7))
+	else if ((kDown & HidNpadButton_A) && (mode_game == 7))
 	{
 		if (buy_cages_females*5 <= CHECKOUT)
 		{
@@ -414,7 +414,7 @@ void readInput()
 			error = true;
 		}
 	}
-	else if ((kDown & KEY_A) && (mode_game == 8))
+	else if ((kDown & HidNpadButton_A) && (mode_game == 8))
 	{
 		SCORE = 0;
 		mode_game = 1;
@@ -423,27 +423,27 @@ void readInput()
 	}
 
 	//the selection at D-pad
-	else if ((kDown & KEY_RIGHT) && (mode_game >= 2) && (mode_game < 8))
+	else if ((kDown & HidNpadButton_Right) && (mode_game >= 2) && (mode_game < 8))
 	{
 		selection++;
 	}
-	else if ((kDown & KEY_LEFT) && (selection >= 1) && (mode_game >= 2) && (mode_game < 8))
+	else if ((kDown & HidNpadButton_Left) && (selection >= 1) && (mode_game >= 2) && (mode_game < 8))
 	{
 		selection--;
 	}
-	else if ((kDown & KEY_UP) && (mode_game >= 2) && (mode_game < 8))
+	else if ((kDown & HidNpadButton_Up) && (mode_game >= 2) && (mode_game < 8))
 	{
 		selection+=10;
 	}
-	else if ((kDown & KEY_DOWN) && (selection >= 10) && (mode_game >= 2) && (mode_game < 8))
+	else if ((kDown & HidNpadButton_Down) && (selection >= 10) && (mode_game >= 2) && (mode_game < 8))
 	{
 		selection-=10;
 	}
-	else if ((kDown & KEY_R) && (mode_game >= 2) && (mode_game < 8))
+	else if ((kDown & HidNpadButton_R) && (mode_game >= 2) && (mode_game < 8))
 	{
 		selection+=100;
 	}
-	else if ((kDown & KEY_L) && (selection >= 100) && (mode_game >= 2) && (mode_game < 8))
+	else if ((kDown & HidNpadButton_L) && (selection >= 100) && (mode_game >= 2) && (mode_game < 8))
 	{
 		selection-=100;
 	}
@@ -455,9 +455,11 @@ int main(int argc, char **argv)
 	
 	
 	consoleInit(NULL);
-
 	setInitialize();
-
+	
+	padConfigureInput(1, HidNpadStyleSet_NpadStandard);
+	PadState pad;
+	padInitializeDefault(&pad);
 
 	mode_intro = true;
 	newGame();
@@ -474,10 +476,11 @@ int main(int argc, char **argv)
 		else if (mode_game == 6) buy_cages_males = selection;
 		else if (mode_game == 7) buy_cages_females = selection;
 
-		hidScanInput();
-		kDown = hidKeysDown(CONTROLLER_P1_AUTO);
+        padUpdate(&pad);
+        u64 kDown = padGetButtonsDown(&pad);
+				
 		readInput();
-		if (kDown & KEY_PLUS) { 
+		if (kDown & HidNpadButton_Plus) { 
 		break; 
 		} // break in order to return to hbmenu
 
