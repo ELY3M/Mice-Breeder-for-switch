@@ -39,7 +39,7 @@ EXEFS_SRC	:=	exefs_src
 APP_TITLE   := Mice Breeder
 APP_AUTHOR  := ELY M.
 APP_VERSION := 1.0
-ICON 		:= icon.jpg
+ICON 		:= icon.png
 
 #---------------------------------------------------------------------------------
 # options for code generation
